@@ -61,8 +61,9 @@ app.get('/profile', (req, res) => {
   const { token } = req.cookies;
   jwt.verify(token, secret, {}, (err, info) => {
     if (err) {
+      
       // Handle the error appropriately, e.g., send an error response to the client
-      return res.status(401).json({ error: 'Invalid or expired token.' });
+      return res.status(401).json({ error: 'Invalid or expired token.', token: token });
     }
     res.json(info);
   });
