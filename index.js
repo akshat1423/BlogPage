@@ -17,7 +17,8 @@ const secret = 'asdfe45we45w345wegw345werjktjwertkj';
 app.use(cors({
   methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH', 'VERIFY'],
   credentials: true,
-  origin: 'https://axe-blogs.vercel.app'
+  // origin: 'https://axe-blogs.vercel.app'
+  origin: '*'
 }));
 app.use(express.json());
 app.use(cookieParser());
