@@ -39,6 +39,15 @@ app.post('/register', async (req,res) => {
   }
 });
 
+
+app.post('/whatsapp', async (req, res) => {
+  const postedData = req.body;
+
+  // Construct the plain text response
+  const textResponse = JSON.stringify(postedData, null, 2);
+  
+  res.send(textResponse);
+});
 app.post('/login',   async (req,res) => {
   const {username,password} = req.body;
   const userDoc = await User.findOne({username});
