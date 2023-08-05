@@ -10,6 +10,24 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const uploadMiddleware = multer({ dest: 'uploads/' });
 const fs = require('fs');
+const { spawn } = require('child_process');
+
+app.get('/run-python', (req, res) => {
+  const pythonProcess = spawn('python', ['hello.py', '1', '2']);
+  
+  pythonProcess.stdout.on('data', (data) => {
+    console.log(`Python Output: ${data}`);
+  });
+  
+  pythonProcess.stderr.on('data', (data) => {
+    console.error(`Python Error: ${data}`);
+  });
+  
+  pythonProcess.on('close', (code) => {
+    console.log(`Python process exited with code ${code}`);
+    res.send(`Python process exited with code ${code}`);
+  });
+});
 
 const salt = bcrypt.genSaltSync(10);
 const secret = 'asdfe45we45w345wegw345werjktjwertkj';
