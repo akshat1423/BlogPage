@@ -46,7 +46,7 @@ app.post('/whatsapp', async (req, res) => {
   const postedData = req.body;
 
   // Construct the plain text response
-  const textResponse = JSON.stringify(postedData, null, 2);
+  const textResponse = JSON.stringify(postedData, null, 2)+"hello";
   
   res.send(textResponse);
 });
